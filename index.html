@@ -20,15 +20,30 @@
    </div>
 
    <script>
+      let locked = false;
+
       function rolldice() {
+         if(locked) return;
+         locked = true;
+
          let el = document.getElementById("dice");
-         let dice1 = Math.round(Math.random()*1.0);
-         let dice2 = Math.round(Math.random()*1.0);
-         let dice3 = Math.round(Math.random()*1.0);
-         let dice4 = Math.round(Math.random()*1.0);
+         el.innerText = "";
+
+         let dice1 = Math.floor(Math.random() * 2);
+         let dice2 = Math.floor(Math.random() * 2);
+         let dice3 = Math.floor(Math.random() * 2);
+         let dice4 = Math.floor(Math.random() * 2);
          let dice_roll = dice1 + dice2 + dice3 + dice4;
-         el.innerText = dice_roll;
+
          say(dice_roll);
+
+         setTimeout(()=>{
+            el.innerText = dice_roll;
+         },250);
+
+         setTimeout(()=>{
+            locked = false;
+         },1000);
       }
 
       function say(frase) {
