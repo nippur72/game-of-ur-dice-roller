@@ -28,6 +28,18 @@
          let dice4 = Math.round(Math.random()*1.0);
          let dice_roll = dice1 + dice2 + dice3 + dice4;
          el.innerText = dice_roll;
+         say(dice_roll);
+      }
+
+      function say(frase) {
+         const synth = window.speechSynthesis;
+         if(synth === undefined) return;
+         const utterThis = new SpeechSynthesisUtterance(frase);
+         // const voices = synth.getVoices();
+         // utterThis.voice = voices[0];
+         utterThis.pitch = 1.0;
+         utterThis.rate = 1.0;
+         synth.speak(utterThis);
       }
    </script>
 </body>
